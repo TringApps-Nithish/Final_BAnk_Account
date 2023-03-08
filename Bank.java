@@ -1,25 +1,21 @@
 package com.example;
+
 import java.util.*;
 
 public class Bank {
 
-    private TreeMap<Integer, Account> accounts;
-    private Scanner scanner;
-
-    public Bank() {
-        accounts = new TreeMap<>();
-        scanner = new Scanner(System.in);
-    }
+    private TreeMap<Integer, Account> accounts = new TreeMap<>();
+    private Scanner sc = new Scanner(System.in);
 
     public void createAccount() {
         System.out.println("Enter account name: ");
-        String name = scanner.nextLine();
+        String name = sc.nextLine();
 
         System.out.println("Enter account number: ");
-        int accountNumber = Integer.parseInt(scanner.nextLine());
+        int accountNumber = sc.nextInt();
 
         System.out.println("Enter account balance: ");
-        double balance = Double.parseDouble(scanner.nextLine());
+        double balance = sc.nextDouble();
 
         Account account = new Account(name, accountNumber, balance);
         accounts.put(accountNumber, account);
@@ -29,7 +25,7 @@ public class Bank {
 
     public void deposit() {
         System.out.println("Enter account number: ");
-        int accountNumber = Integer.parseInt(scanner.nextLine());
+        int accountNumber = sc.nextInt();
 
         if (!accounts.containsKey(accountNumber)) {
             System.out.println("Account not found.");
@@ -37,7 +33,7 @@ public class Bank {
         }
 
         System.out.println("Enter amount to deposit: ");
-        double amount = Double.parseDouble(scanner.nextLine());
+        double amount = sc.nextDouble();
 
         Account account = accounts.get(accountNumber);
         account.deposit(amount);
@@ -47,7 +43,7 @@ public class Bank {
 
     public void withdraw() {
         System.out.println("Enter account number: ");
-        int accountNumber = Integer.parseInt(scanner.nextLine());
+        int accountNumber = sc.nextInt();
 
         if (!accounts.containsKey(accountNumber)) {
             System.out.println("Account not found.");
@@ -55,7 +51,7 @@ public class Bank {
         }
 
         System.out.println("Enter amount to withdraw: ");
-        double amount = Double.parseDouble(scanner.nextLine());
+        double amount = sc.nextDouble();
 
         Account account = accounts.get(accountNumber);
 
@@ -69,7 +65,7 @@ public class Bank {
 
     public void checkBalance() {
         System.out.println("Enter account number: ");
-        int accountNumber = Integer.parseInt(scanner.nextLine());
+        int accountNumber = sc.nextInt();
 
         if (!accounts.containsKey(accountNumber)) {
             System.out.println("Account not found.");
@@ -101,7 +97,7 @@ public class Bank {
             System.out.println("6. Exit");
 
             System.out.println("Enter your choice: ");
-            int choice = Integer.parseInt(scanner.nextLine());
+            int choice = sc.nextLine();
 
             switch (choice) {
                 case 1:
@@ -120,7 +116,7 @@ public class Bank {
                     displayAllAccounts();
                     break;
                 case 6:
-                    scanner.close();
+                    sc.close();
                     System.out.println("Exiting...");
                     return;
                 default:
@@ -135,7 +131,8 @@ public class Bank {
         bank.run();
     }
 }
- class Account {
+
+class Account {
     private String name;
     private int accountNumber;
     private double balance;

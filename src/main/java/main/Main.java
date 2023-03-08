@@ -1,10 +1,12 @@
 package main;
 
-import getdate.Getdate;
+import getter.Getter;
 
-public class Main {
+class Main {
+    private static Getter bank = new Getter();
+
     public static void main(String[] args) {
-        Getdate get = new Getdate();
-        get.getDate();
+
+        bank.run();
     }
 }

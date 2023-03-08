@@ -1,28 +1,71 @@
 package functions;
 
 import java.util.logging.Logger;
-import java.util.logging.Level;
-import java.util.Scanner;
+import java.util.*;
+
+import setter.*;
 
 public class Functions {
-    Logger l = Logger.getLogger("Operation");
-    Scanner sc = new Scanner(System.in);
-    int accountBalance;
+    private TreeMap<Integer, setter> accounts = new TreeMap<>();
+    private Scanner sc = new Scanner(System.in);
+    private Logger l = Logger.getLogger("Functions");
+    private int accountnumber;
+    private double amount;
+
+    public void createAccount() {
+        l.info("Enter account name: ");
+        String name = sc.next();
+        l.info("Enter account number: ");
+        int accountNumber = sc.nextInt();
+        l.info("Enter account balance: ");
+        double balance = sc.nextDouble();
+        setter account = new setter(name, accountNumber, balance);
+        accounts.put(accountNumber, account);
+        l.info("Account created successfully.");
+    }
 
     public void deposit() {
-        l.info("\nEnter Amount You Want To Deposit : ");
-        int depositAmount = sc.nextInt();
-        accountBalance += depositAmount;
+        l.info("Enter account number: ");
+        accountnumber = sc.nextInt();
+        if (accounts.containsKey(accountnumber)) {
+            l.info("Enter amount to deposit: ");
+            amount = sc.nextDouble();
+            setter account = accounts.get(accountnumber);
+            account.deposit(amount);
+            l.info("Deposit successful. New balance: " + account.getBalance());
+        } else
+            l.info("Account not found.");
+
     }
 
     public void withdraw() {
-        l.info("\nEnter Amount You Want To WithDraw : ");
-        int withdrawAmount = sc.nextInt();
-        accountBalance -= withdrawAmount;
+        l.info("Enter account number: ");
+        accountnumber = sc.nextInt();
+        if (accounts.containsKey(accountnumber)) {
+            l.info("Enter amount to deposit: ");
+            amount = sc.nextDouble();
+            setter account = accounts.get(accountnumber);
+            if (amount > account.getBalance())
+                l.info("Insufficient Fund...");
+            else {
+                account.withdraw(amount);
+                l.info("Deposit successful. New balance: " + account.getBalance());
+            }
+        } else
+            l.info("Account not found.");
     }
 
-    public void balance() {
-        l.log(Level.INFO, () -> "\nYour Current Balance : " + accountBalance);
+    public void checkBalance() {
+        l.info("Enter account number: ");
+        accountnumber = sc.nextInt();
+
+        if (accounts.containsKey(accountnumber)) {
+            setter account = accounts.get(accountnumber);
+            l.info("Account Holder Name " + account.getName());
+            l.info("Account Number: " + account.getAccountNumber());
+            l.info("" + "Current balance: " + account.getBalance());
+        } else
+            l.info("Account not found.");
     }
 
 }
