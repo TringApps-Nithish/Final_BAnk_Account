@@ -1,12 +1,13 @@
 package functions;
 
 import java.util.logging.Logger;
+
+import assigingvalues.*;
+
 import java.util.*;
 
-import setter.*;
-
 public class Functions {
-    private TreeMap<Integer, setter> accounts = new TreeMap<>();
+    private TreeMap<Integer, Assignvalues> accounts = new TreeMap<>();
     private Scanner sc = new Scanner(System.in);
     private Logger l = Logger.getLogger("Functions");
     private int accountnumber;
@@ -19,7 +20,7 @@ public class Functions {
         int accountNumber = sc.nextInt();
         l.info("Enter account balance: ");
         double balance = sc.nextDouble();
-        setter account = new setter(name, accountNumber, balance);
+        Assignvalues account = new Assignvalues(name, accountNumber, balance);
         accounts.put(accountNumber, account);
         l.info("Account created successfully.");
     }
@@ -30,7 +31,7 @@ public class Functions {
         if (accounts.containsKey(accountnumber)) {
             l.info("Enter amount to deposit: ");
             amount = sc.nextDouble();
-            setter account = accounts.get(accountnumber);
+            Assignvalues account = accounts.get(accountnumber);
             account.deposit(amount);
             l.info("Deposit successful. New balance: " + account.getBalance());
         } else
@@ -44,7 +45,7 @@ public class Functions {
         if (accounts.containsKey(accountnumber)) {
             l.info("Enter amount to deposit: ");
             amount = sc.nextDouble();
-            setter account = accounts.get(accountnumber);
+            Assignvalues account = accounts.get(accountnumber);
             if (amount > account.getBalance())
                 l.info("Insufficient Fund...");
             else {
@@ -60,7 +61,7 @@ public class Functions {
         accountnumber = sc.nextInt();
 
         if (accounts.containsKey(accountnumber)) {
-            setter account = accounts.get(accountnumber);
+            Assignvalues account = accounts.get(accountnumber);
             l.info("Account Holder Name " + account.getName());
             l.info("Account Number: " + account.getAccountNumber());
             l.info("" + "Current balance: " + account.getBalance());
