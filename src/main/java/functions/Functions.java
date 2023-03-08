@@ -13,6 +13,7 @@ public class Functions {
     private int accountnumber;
     private double amount;
     private String getname = "Enter Account Holder Name : ";
+    private String error = "Account Not Faound...";
 
     public void createAccount() {
         l.info(getname);
@@ -36,7 +37,7 @@ public class Functions {
             accountdeposit.deposit(amount);
             l.info("Deposit successful. New balance: " + accountdeposit.getBalance());
         } else
-            l.info("Account not found.");
+            l.info(error);
 
     }
 
@@ -54,7 +55,7 @@ public class Functions {
                 l.info("Deposit successful. New balance: " + accountwithdraw.getBalance());
             }
         } else
-            l.info("Account not found.");
+            l.info(error);
     }
 
     public void checkBalance() {
@@ -67,7 +68,7 @@ public class Functions {
             l.info("Account Number : " + accountdisplay.getAccountNumber());
             l.info("Current balance : " + accountdisplay.getBalance());
         } else
-            l.info("Account not found.");
+            l.info(error);
     }
 
 }
