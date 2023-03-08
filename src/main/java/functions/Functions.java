@@ -12,14 +12,14 @@ public class Functions {
     private Logger l = Logger.getLogger("Functions");
     private int accountnumber;
     private double amount;
-    private String getname = "Enter account name: ";
+    private String getname = "Enter Account Holder Name : ";
 
     public void createAccount() {
         l.info(getname);
         String name = sc.next();
-        l.info("Enter account number: ");
+        l.info("Enter Account Number : ");
         int accountNumber = sc.nextInt();
-        l.info("Enter account balance: ");
+        l.info("Enter Initial Account balance : ");
         double balance = sc.nextDouble();
         Assignvalues account = new Assignvalues(name, accountNumber, balance);
         accounts.put(accountNumber, account);
@@ -30,7 +30,7 @@ public class Functions {
         l.info(getname);
         accountnumber = sc.nextInt();
         if (accounts.containsKey(accountnumber)) {
-            l.info("Enter amount to deposit: ");
+            l.info("Enter Amount to Deposit : ");
             amount = sc.nextDouble();
             Assignvalues accountdeposit = accounts.get(accountnumber);
             accountdeposit.deposit(amount);
@@ -44,7 +44,7 @@ public class Functions {
         l.info(getname);
         accountnumber = sc.nextInt();
         if (accounts.containsKey(accountnumber)) {
-            l.info("Enter amount to deposit: ");
+            l.info("Enter Amount to Deposit : ");
             amount = sc.nextDouble();
             Assignvalues accountwithdraw = accounts.get(accountnumber);
             if (amount > accountwithdraw.getBalance())
@@ -58,7 +58,7 @@ public class Functions {
     }
 
     public void checkBalance() {
-        l.info("Enter account number: ");
+        l.info("Enter Account Number : ");
         accountnumber = sc.nextInt();
 
         if (accounts.containsKey(accountnumber)) {
