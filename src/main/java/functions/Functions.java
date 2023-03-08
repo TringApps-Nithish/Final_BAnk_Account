@@ -12,9 +12,10 @@ public class Functions {
     private Logger l = Logger.getLogger("Functions");
     private int accountnumber;
     private double amount;
+    private String getname = "Enter account name: ";
 
     public void createAccount() {
-        l.info("Enter account name: ");
+        l.info(getname);
         String name = sc.next();
         l.info("Enter account number: ");
         int accountNumber = sc.nextInt();
@@ -26,31 +27,31 @@ public class Functions {
     }
 
     public void deposit() {
-        l.info("Enter account number: ");
+        l.info(getname);
         accountnumber = sc.nextInt();
         if (accounts.containsKey(accountnumber)) {
             l.info("Enter amount to deposit: ");
             amount = sc.nextDouble();
-            Assignvalues account = accounts.get(accountnumber);
-            account.deposit(amount);
-            l.info("Deposit successful. New balance: " + account.getBalance());
+            Assignvalues accountdeposit = accounts.get(accountnumber);
+            accountdeposit.deposit(amount);
+            l.info("Deposit successful. New balance: " + accountdeposit.getBalance());
         } else
             l.info("Account not found.");
 
     }
 
     public void withdraw() {
-        l.info("Enter account number: ");
+        l.info(getname);
         accountnumber = sc.nextInt();
         if (accounts.containsKey(accountnumber)) {
             l.info("Enter amount to deposit: ");
             amount = sc.nextDouble();
-            Assignvalues account = accounts.get(accountnumber);
-            if (amount > account.getBalance())
+            Assignvalues accountwithdraw = accounts.get(accountnumber);
+            if (amount > accountwithdraw.getBalance())
                 l.info("Insufficient Fund...");
             else {
-                account.withdraw(amount);
-                l.info("Deposit successful. New balance: " + account.getBalance());
+                accountwithdraw.withdraw(amount);
+                l.info("Deposit successful. New balance: " + accountwithdraw.getBalance());
             }
         } else
             l.info("Account not found.");
@@ -61,10 +62,10 @@ public class Functions {
         accountnumber = sc.nextInt();
 
         if (accounts.containsKey(accountnumber)) {
-            Assignvalues account = accounts.get(accountnumber);
-            l.info("Account Holder Name " + account.getName());
-            l.info("Account Number: " + account.getAccountNumber());
-            l.info("" + "Current balance: " + account.getBalance());
+            Assignvalues accountdisplay = accounts.get(accountnumber);
+            l.info("Account Holder Name : " + accountdisplay.getName());
+            l.info("Account Number : " + accountdisplay.getAccountNumber());
+            l.info("Current balance : " + accountdisplay.getBalance());
         } else
             l.info("Account not found.");
     }
