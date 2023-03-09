@@ -11,13 +11,14 @@ public class Functions {
     private Logger l = Logger.getLogger("Functions");
     private int accountnumber;
     private double amount;
-    private String getname = "Enter Account Holder Name : ";
+    private String getname = " Enter Account Holder Name : ";
+    private String getaccountnumber = " Enter Account Number : ";
     private String error = "Account Not Faound...";
 
     public void createAccount() {
         l.info(getname);
         String name = sc.next();
-        l.info("Enter Account Number : ");
+        l.info(getaccountnumber);
         int accountNumber = sc.nextInt();
         l.info("Enter Initial Account balance : ");
         double balance = sc.nextDouble();
@@ -69,7 +70,7 @@ public class Functions {
     }
 
     public void checkBalance() {
-        l.info("Enter Account Number : ");
+        l.info(getaccountnumber);
         accountnumber = sc.nextInt();
 
         if (accounts.containsKey(accountnumber)) {
@@ -81,7 +82,7 @@ public class Functions {
     }
 
     public void display() {
-        l.info("Enter Account Number : ");
+        l.info(getaccountnumber);
         accountnumber = sc.nextInt();
 
         if (accounts.containsKey(accountnumber)) {
