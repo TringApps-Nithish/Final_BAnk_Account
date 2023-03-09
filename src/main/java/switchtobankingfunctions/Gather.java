@@ -12,7 +12,7 @@ public class Gather {
 
     public void run() {
         while (true) {
-            l.info("\n 1. Create account\n 2. Deposit\n 3. Withdraw\n 4. Check balance\n 5 Enextmoveit");
+            l.info("\n 1. Create account\n 2. Deposit\n 3. Withdraw\n 4. Check balance \n 5 Display Account\n 6 Exit ");
             l.info("Enter your choice: ");
             int choice = sc.nextInt();
 
@@ -21,7 +21,8 @@ public class Gather {
                 case 2 -> nextmove.deposit();
                 case 3 -> nextmove.withdraw();
                 case 4 -> nextmove.checkBalance();
-                case 5 -> {
+                case 5 -> nextmove.display();
+                case 6 -> {
                     sc.close();
                     l.info("Exiting...");
                     return;
